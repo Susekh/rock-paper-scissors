@@ -4,9 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="./script.js"></script>
+    <!--<script src="./script.js"></script>-->
+    <script src="./new-script.js" defer></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Rock Paper Scissors</h1>
+    </header>
     
+    <div class="score-board">
+        <div class="badge" id="user-label">user</div>
+        <div id="computer-label" class="badge">comp</div>
+        <span id="user-score">0</span>: <span id="computer-score">0</span>
+    </div>
+
+    <div class="result">
+        <p>paper wins over rock. you win!</p>
+    </div>
+    
+    <div class="choices">
+        <div class="choice" id="rock">
+            <img src="" alt="" >
+        </div>
+        <div class="choice" id="paper">
+            <img src="" alt="" >
+        </div>
+        <div class="choice" id="scissors">
+            <img src="" alt="" >
+        </div>
+    </div>
+    <p id="action-message">Make your move</p>
+
 </body>
 </html>
