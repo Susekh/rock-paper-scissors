@@ -1,16 +1,18 @@
 let userScore = 0;
 let computerScore = 0;
-const userScore_span = document.getElementById("user-score");
+let count = 5;
+let userScore_span = document.getElementById("user-score");
 let computerScore_span = document.getElementById("computer-score");
-const scoreBoard_div = document.querySelector(".score-board");
-const result_p = document.querySelector(".result > p");
-const rock_div = document.getElementById("rock");
-const paper_div = document.getElementById("paper");
-const scissors_div = document.getElementById("scissors");
+let scoreBoard_div = document.querySelector(".score-board");
+let result_p = document.querySelector(".result > p");
+let rock_div = document.getElementById("rock");
+let paper_div = document.getElementById("paper");
+let scissors_div = document.getElementById("scissors");
+let winner = document.getElementById("action-message");
 
 function getComputerChoice(){
-    const choices = ['r', 'p', 's'];
-    const randomeNumber = Math.floor(Math.random()*3);
+    let choices = ['Rock', 'Paper', 'Scissors'];
+    let randomeNumber = Math.floor(Math.random()*3);
     return choices[randomeNumber];
 
 }
@@ -19,13 +21,15 @@ function win(userChoice, computerChoice){
     userScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
-    result_p.innerHTML = userChoice + " beats " + computerChoice + " you win ";
+    result_p.innerHTML = userChoice + " beats " + computerChoice + ". User wins! ;)" ;
+    return userScore;
 }
 function lose(userChoice, computerChoice){
     computerScore++;
     userScore_span.innerHTML = userScore;
     computerScore_span.innerHTML = computerScore;
-    result_p.innerHTML = computerChoice + " beats " + userChoice + " you lost ";
+    result_p.innerHTML = computerChoice + " beats " + userChoice + ". Computer wins. :(" ;
+    return computerScore;
 }
 
 function draw() {
@@ -35,42 +39,57 @@ function draw() {
 }
 
 function game(userChoice){
-    const computerChoice = getComputerChoice();
+    let computerChoice = getComputerChoice();
     switch(userChoice + computerChoice) {
-        case "rs":
-        case "pr":
+        case "RockScissors":
+        case "PaperRock":
         case "sp":
             win(userChoice, computerChoice);
+            if(userScore === 5){
+                winner.innerHTML = "You won! 🥳";
+                result_p.innerHTML = "Refresh to play another game."
+                endGame();
+            }
             break;
-        case "rp":
-        case "ps":
-        case "sr":
+        case "RockPaper":
+        case "PaperScissors":
+        case "ScissorsRock":
             lose(userChoice, computerChoice);
+            if(computerScore === 5){
+                winner.innerHTML = "You lost! 😢";
+                result_p.innerHTML = "Refresh to play another game."
+                endGame();
+
+            }
             break;
-        case "rr":
-        case "pp":
-        case "ss":
+        case "RockRock":
+        case "PaperPaper":
+        case "ScissorsScissors":
             draw();
-            break;    
+            break;
     }
 }
 
 game();
 
+function endGame(){
+    rock_div.remove();
+    paper_div.remove();
+    scissors_div.remove();
+}
 
 function main () {
     rock_div.addEventListener('click', function(){
-        game("r");
+        game("Rock");
     })
     paper_div.addEventListener('click', function(){
-        game("p");
+        game("Paper");
     })
     scissors_div.addEventListener('click', function(){
-        game("s");
+        game("Scissors");
     })
 }
 
 main();
 
-
-
+console.log(userScore);
