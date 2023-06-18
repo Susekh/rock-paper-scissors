@@ -1,2 +1,3 @@
 # rock-paper-scissors
-This is a simple game of rock, paper and scissors to get a freehand experience with javascript.
+Creating the game rock, paper and scissors to gain experience on javascript.
+Checkout the game at => https://susekh.github.io/rock-paper-scissors/
