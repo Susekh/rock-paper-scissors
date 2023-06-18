@@ -10,12 +10,33 @@ let paper_div = document.getElementById("paper");
 let scissors_div = document.getElementById("scissors");
 let winner = document.getElementById("action-message");
 
+//Taking a randome choice from computer.
+
 function getComputerChoice(){
     let choices = ['Rock', 'Paper', 'Scissors'];
     let randomeNumber = Math.floor(Math.random()*3);
     return choices[randomeNumber];
 
 }
+
+//Taking the choice of user out of Rock, Paper and Scissors.
+
+function getUserChoice () {
+    rock_div.addEventListener('click', function(){
+        game("Rock");
+    })
+    paper_div.addEventListener('click', function(){
+        game("Paper");
+    })
+    scissors_div.addEventListener('click', function(){
+        game("Scissors");
+    })
+}
+
+getUserChoice();
+
+
+//functions to be used inside game function.
 
 function win(userChoice, computerChoice){
     userScore++;
@@ -37,6 +58,9 @@ function draw() {
     computerScore_span.innerHTML = computerScore;
     result_p.innerHTML = " draw ";
 }
+
+
+//function to play the game.
 
 function game(userChoice){
     let computerChoice = getComputerChoice();
@@ -72,24 +96,10 @@ function game(userChoice){
 
 game();
 
+//function to end the game
+
 function endGame(){
     rock_div.remove();
     paper_div.remove();
     scissors_div.remove();
 }
-
-function main () {
-    rock_div.addEventListener('click', function(){
-        game("Rock");
-    })
-    paper_div.addEventListener('click', function(){
-        game("Paper");
-    })
-    scissors_div.addEventListener('click', function(){
-        game("Scissors");
-    })
-}
-
-main();
-
-console.log(userScore);
